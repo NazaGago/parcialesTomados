@@ -1,0 +1,7 @@
+cradle:
+  stack:
+    - path: "./src"
+      component: "unParcialMas:lib"
+
+    - path: "./test"
+      component: "unParcialMas:test:unParcialMas-test"
