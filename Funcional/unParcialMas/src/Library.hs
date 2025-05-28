@@ -25,10 +25,10 @@ rigby = UnPersonaje "Rigby" 65 101 [cafeCafe 200, taeKwonMortal "Golpe"] []
 --2a)
 
 fiestaLosMartes :: PowerUp
-fiestaLosMartes = nombreBullicio . reducirVagancia 10
+fiestaLosMartes = nombreBullicio . modificarVagancia (-10)
 
-reducirVagancia :: Number -> Personaje -> Personaje
-reducirVagancia numero personaje = personaje{vagancia = max 0 (vagancia personaje - numero)}
+modificarVagancia :: Number -> Personaje -> Personaje
+modificarVagancia numero personaje = personaje{vagancia = max 0 (vagancia personaje - numero)}
 
 nombreBullicio :: Personaje -> Personaje
 nombreBullicio personaje = personaje{nombre = nombre personaje ++ " Bullicio"}
@@ -60,7 +60,7 @@ alterarInteligencia numero personaje = personaje{inteligencia = inteligencia per
 --2d)
 
 videoJuegos :: PowerUp
-videoJuegos = reducirVagancia (-35) . alterarInteligencia 5 . agregarTitulo "Maestro de Los videojuegos"
+videoJuegos = modificarVagancia 35 . alterarInteligencia 5 . agregarTitulo "Maestro de Los videojuegos"
 
 --2e)
 
