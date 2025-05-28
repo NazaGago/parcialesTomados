@@ -85,10 +85,8 @@ puedeRealizarMision mision personaje = requisitoBasico personaje && mision perso
 --3a)
 
 desafioExtrahuevordinario :: Mision
-desafioExtrahuevordinario = tieneTitulo "Extrahuevordianario"
+desafioExtrahuevordinario = yaLoTiene "Extrahuevordianario"
 
-tieneTitulo :: String -> Personaje -> Bool
-tieneTitulo titulo personaje = titulo `elem` titulos personaje
 
 --3b)
 
