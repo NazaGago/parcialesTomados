@@ -13,8 +13,8 @@ correrTests = hspec $ do
 
   describe "Test para verificar el correcto funcionamiento de la mision beberMissisipiQueen" $ do
 
-    it "Un personaje que no tiene ningun powerUp no puede realizar la mision" $ do  
-      puedeRealizarMision beberMissisipiQueen rigby{powerUps = []} `shouldBe` False
+    it "Un personaje que no tiene más de un powerUp no puede realizar la mision" $ do  
+      puedeRealizarMision beberMissisipiQueen mordecai{powerUps = []} `shouldBe` False
 
     it "Un personaje que es vago no puede realizar la mision" $ do
       puedeRealizarMision beberMissisipiQueen rigby `shouldBe` False
@@ -24,3 +24,7 @@ correrTests = hspec $ do
 
     it "Un personaje que no es vago, tiene un nombre apropiado y tiene mas de un powerUp puede realizar la mision" $ do
       puedeRealizarMision beberMissisipiQueen mordecai `shouldBe` True  
+
+  describe "Test para verificar que pasaría si le paso una lista infinitas de misiones a un personaje" $ do 
+    it "Un personaje que encuentre una mision que no pueda cumplir, contara hasta ese momento nada más" $ do 
+      cuantasPuedeCompletar misionesInfinitas rigby `shouldBe` 0  
