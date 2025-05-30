@@ -1,5 +1,3 @@
-{-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
-{-# HLINT ignore "Use repeat" #-}
 module Library where
 import PdePreludat
 import GHC.Conc (labelThread)
@@ -156,18 +154,26 @@ cuantasPuedeCompletar mision = length . cualesPuedeCompletar mision
 
 --7b)
 
---En el caso de que haya una misión que no pueda realizar, gracias a lazy evaluation, haskell evaluara hasta esa mision y podra realizar
---El calculo, en caso de que el personaje cumpla infinitamente con las misiones, no podra arrojar el resultado esperado.
+{-
+En el caso de que se encuentre con una misión que no pueda realizar, se detendra la recursión y creara la lista de misiones posibles 
+hasta ese momento, luego calcularle el length al ser una lista finita no sera un problema. Por otro lado, si el personaje puede
+completar una infinidad de veces la misión, no podra realizar el calculo ya que no podría terminar nunca de evaluar la lista infinita
+en cualesPuedeCompletar y si esa función no devuelve una lista finita, sera imposible calcularle la longitud.
+-}
 
-
--- En el caso de que rigby intente, podra darnos un resultado = 0 pues ya la primera vez que intente realizar dar carinio, se corta la
--- recursion de la misión cualesPuedeCompletar (test en specs)
+{-
+En el caso de que rigby intente misionesInifintas, podra darnos un resultado = 0 pues ya la primera vez que intente realizar 
+darCarinio no podra resolverla y se cortara la recursion de la función cualesPuedeCompletar (test en specs) 
+-}
 
 misionesInfinitas :: [Mision]
 misionesInfinitas = repeat darCarinio
 
--- en el caso de que mordecai intente saber cuantas Puede completar de misionesInfinitas2, se quedara infinitamente realizandolas ya que
--- puede realizar esas dos misiones una infinidad de veces.
+{-
+En el caso de que mordecai intente saber cuantas Puede completar de misionesInfinitas2, no podra salir de la recursión de la funcion
+cualesPuedeCompletar ya que podría completarlas infinitamente. Entonces, la función nunca terminaría de realizarse haciendo imposible
+que tire un resultado para calcularle la longitud.
+-}
 
 misionesInfinitas2 :: [Mision]
 misionesInfinitas2 = cycle [comerSandwichDeLaMuerte,darCarinio]
