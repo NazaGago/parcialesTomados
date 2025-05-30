@@ -28,5 +28,4 @@ correrTests = hspec $ do
   describe "Test para verificar que pasaría si le paso una lista infinitas de misiones a un personaje" $ do 
   
     it "Un personaje que encuentre una mision que no pueda cumplir, contara hasta ese momento nada más" $ do 
-    
       cuantasPuedeCompletar misionesInfinitas rigby `shouldBe` 0  
