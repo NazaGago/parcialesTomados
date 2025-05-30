@@ -86,7 +86,7 @@ picante = id
 type Mision = Personaje -> Bool
 
 requisitoBasico :: Personaje -> Bool
-requisitoBasico = (>1) . length . powerUps
+requisitoBasico = (>=1) . length . powerUps
 
 puedeRealizarMision :: Mision -> Personaje -> Bool
 puedeRealizarMision mision personaje = requisitoBasico personaje && mision personaje
