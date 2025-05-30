@@ -59,7 +59,7 @@ taeKwonMortal = agregarTitulo . movimientoMortal
 menteMax :: PowerUp
 menteMax = incrementarPorcentualmenteInteligencia 10 . agregarTitulo "Moriones"
 
---incrementarPorcuentualmenteInteligencia es una funcion para agregarle un porcentaje de inteligencia al personaje sin repetir logica
+--incrementarPorcentualmenteInteligencia es una funcion para agregarle un porcentaje de inteligencia al personaje sin repetir logica
 
 incrementarPorcentualmenteInteligencia :: Number -> Personaje -> Personaje
 incrementarPorcentualmenteInteligencia numero personaje = personaje{inteligencia = inteligencia personaje + inteligencia personaje * (numero/100)}
