@@ -155,25 +155,26 @@ cuantasPuedeCompletar mision = length . cualesPuedeCompletar mision
 --7b)
 
 {-
+Haskell utiliza lazy evaluation o evaluación perezosa, este tipo de evaluación implica que los parametros que reciba una funcion seran
+evaluados lo más tarde posible, es decir, no se evaluan que no sean necesarios. Por eso Haskell, pese a recibir una lista infinita como
+parametro, haskell va evaluando uno por uno los elementos. Esto permite que en el caso de que no se necesite evaluar la lista completa, 
+de una lista infinita se pueda llegar a un resultado valido. Teniendo en cuenta esto:
+
 En el caso de que se encuentre con una misión que no pueda realizar, se detendra la recursión y creara la lista de misiones posibles 
 hasta ese momento, luego calcularle el length al ser una lista finita no sera un problema. Por otro lado, si el personaje puede
 completar una infinidad de veces la misión, no podra realizar el calculo ya que no podría terminar nunca de evaluar la lista infinita
 en cualesPuedeCompletar y si esa función no devuelve una lista finita, sera imposible calcularle la longitud.
--}
 
-{-
 En el caso de que rigby intente misionesInifintas, podra darnos un resultado = 0 pues ya la primera vez que intente realizar 
 darCarinio no podra resolverla y se cortara la recursion de la función cualesPuedeCompletar (test en specs) 
--}
 
-misionesInfinitas :: [Mision]
-misionesInfinitas = repeat darCarinio
-
-{-
 En el caso de que mordecai intente saber cuantas Puede completar de misionesInfinitas2, no podra salir de la recursión de la funcion
 cualesPuedeCompletar ya que podría completarlas infinitamente. Entonces, la función nunca terminaría de realizarse haciendo imposible
 que tire un resultado para calcularle la longitud.
 -}
+
+misionesInfinitas :: [Mision]
+misionesInfinitas = repeat darCarinio
 
 misionesInfinitas2 :: [Mision]
 misionesInfinitas2 = cycle [comerSandwichDeLaMuerte,darCarinio]
