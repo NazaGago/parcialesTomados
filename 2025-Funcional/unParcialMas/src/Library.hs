@@ -156,7 +156,7 @@ cuantasPuedeCompletar mision = length . cualesPuedeCompletar mision
 
 {-
 Haskell utiliza lazy evaluation o evaluación perezosa, este tipo de evaluación implica que los parametros que reciba una funcion seran
-evaluados lo más tarde posible, es decir, no se evaluan que no sean necesarios. Por eso Haskell, pese a recibir una lista infinita como
+evaluados lo más tarde posible, es decir, no se evaluan a menos que sean necesarios. Por eso Haskell, pese a recibir una lista infinita como
 parametro, va evaluando uno por uno los elementos. Esto permite que en el caso de que no se necesite evaluar la lista completa, 
 de una lista infinita se obtenga un resultado valido. Teniendo en cuenta esto:
 
