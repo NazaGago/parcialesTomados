@@ -146,7 +146,7 @@ versionSuprema personaje = foldl (\alguien suPowerUp -> suPowerUp alguien) perso
 cualesPuedeCompletar :: [Mision] -> Personaje -> [Mision]
 cualesPuedeCompletar [] _ = []
 cualesPuedeCompletar (x:xs) personaje
-    |x personaje = x : cualesPuedeCompletar xs personaje
+    |x . versionSuprema $ personaje = x : cualesPuedeCompletar xs personaje
     |otherwise = []
 
 cuantasPuedeCompletar :: [Mision] -> Personaje -> Number
