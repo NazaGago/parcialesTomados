@@ -1,0 +1,7 @@
+cradle:
+  stack:
+    - path: "./src"
+      component: "pardesDeFuego:lib"
+
+    - path: "./test"
+      component: "pardesDeFuego:test:pardesDeFuego-test"
