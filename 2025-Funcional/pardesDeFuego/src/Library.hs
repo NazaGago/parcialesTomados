@@ -11,7 +11,6 @@ ordenarSegun = sortOn
 
 --1)
 
-
 type Origen = String
 type Destino = String
 
@@ -48,7 +47,6 @@ paquete7 = UnPaquete "10.1.1.55" "10.1.1.56" 7 "gbmtp"
 
 --2)
 
-
 type Regla = Paquete -> Bool
 
 data Firewall = UnFirewall{
@@ -81,9 +79,8 @@ palabraClave palabra =  not . estaIncluidaEn palabra . datos
 cumpleRegla :: Paquete -> Regla -> Bool
 cumpleRegla paquete regla = regla paquete
 
-dejaPasar :: Paquete -> Firewall -> Bool
-dejaPasar paquete = all (cumpleRegla paquete) . reglas
-
+dejaPasar :: Firewall -> Paquete -> Bool
+dejaPasar firewall paquete = subMascara (mascara firewall) paquete && all ($ paquete) (reglas firewall)
 
 --3)
 
@@ -135,5 +132,5 @@ separarDatos (x:xs) = x ++ " " ++ separarDatos xs
 
 mensajeSeguro :: Firewall -> Origen -> Destino -> Red -> String
 mensajeSeguro firewall origen destino red
-    |all (`dejaPasar` firewall) red = mensaje origen destino red
+    |all (dejaPasar firewall) red && estaCompleta origen destino red = mensaje origen destino red
     |otherwise = "Mensaje Incompleto" 
